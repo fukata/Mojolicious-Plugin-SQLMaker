@@ -27,7 +27,7 @@ Quick summary of what the module does.
 
 Perhaps a little code snippet.
 
-    $self->app->plugin( SQLMaker => { driver => 'mysql' } );
+    $self->plugin( SQLMaker => { driver => 'mysql' } );
     $self->app->sb->insert($table, \%data);
 
 =head1 SUBROUTINES/METHODS
@@ -41,7 +41,7 @@ sub register {
     $conf ||= {};
 
     croak "driver is required!" unless $conf->{driver};
-    $app->attr( 'sb' => SQL::Maker->new( driver => $conf->{driver} ) );
+    $app->attr( 'sb' => sub { SQL::Maker->new( driver => $conf->{driver} ) } );
 }
 
 =head1 AUTHOR
